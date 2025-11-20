@@ -1,0 +1,687 @@
+/* ======================================================
+ * BASE STYLES & TYPOGRAPHY
+ * ====================================================== */
+:root {
+    /* Added 'Cairo' font for Arabic */
+    --primary-font: 'Cairo', 'Poppins', sans-serif;
+    --serif-font: 'Cairo', 'Playfair Display', serif; /* Cairo works well for both headings and body */
+    --text-color-dark: #333;
+    --text-color-light: #555;
+    --accent-color-light: #efe8dc;
+    --accent-color-dark: #7d6b5e;
+    --bg-white: #ffffff;
+    --border-light: #f0f0f0;
+    --nav-height: 90px;
+}
+
+body {
+    font-family: var(--primary-font);
+    color: var(--text-color-light);
+    overflow-x: hidden;
+    line-height: 1.8; /* Slightly increased for Arabic readability */
+    background-color: var(--bg-white);
+    text-align: right; /* Default right alignment for RTL */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--serif-font);
+    color: var(--text-color-dark);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--text-color-dark);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color-dark);
+    text-decoration: none;
+}
+
+/* Utility Class */
+.arabic-text {
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+/* ======================================================
+ * 1. Navigation Bar
+ * ====================================================== */
+.bonsai-navbar {
+    padding: 1.5rem 0;
+    background-color: transparent;
+    transition: background-color 0.4s ease, padding 0.4s ease;
+    z-index: 1030;
+    box-shadow: none;
+}
+
+.bonsai-navbar .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.bonsai-navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.bonsai-logo-link {
+    padding: 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+}
+
+.bonsai-logo-img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    transition: filter 0.4s ease;
+}
+
+.bonsai-nav-links .nav-link {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 600;
+    margin-left: 2rem; /* In RTL Bootstrap, me-auto pushes items to the start (right), standard margin works */
+    text-transform: none; /* No uppercase for Arabic */
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.bonsai-nav-links .nav-link::after {
+    content: '';
+    position: absolute;
+    right: 0; /* Start form right in RTL */
+    left: auto;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--accent-color-dark);
+    transition: width 0.3s ease;
+}
+
+.bonsai-nav-links .nav-link:hover::after,
+.bonsai-nav-links .nav-link.active::after {
+    width: 100%;
+}
+
+.bonsai-nav-links .nav-link:hover {
+    color: var(--accent-color-dark) !important;
+}
+
+/* Navbar scrolled state */
+.bonsai-navbar.navbar-scrolled {
+    background-color: var(--bg-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 0.8rem 0;
+}
+
+.bonsai-navbar.navbar-scrolled .bonsai-logo-img {
+    filter: none;
+}
+
+.bonsai-navbar.navbar-scrolled .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.bonsai-navbar.navbar-scrolled .bonsai-nav-links .nav-link {
+    color: var(--text-color-dark) !important;
+}
+
+/* ======================================================
+ * 2. Hero Section
+ * ====================================================== */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    /* Using updated hero image */
+    background-image: url('https://i.ibb.co.com/hxLkfpDr/88d4a265692bd5b49bbc6d5bcf5fb94d.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    max-width: 90%;
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--bg-white);
+}
+
+.hero-subtitle {
+    font-size: 1.8rem;
+    font-weight: 400;
+    opacity: 0.9;
+    color: var(--bg-white);
+}
+
+/* ======================================================
+ * 3. Philosophy Section
+ * ====================================================== */
+.philosophy-section {
+    background-color: var(--bg-white);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.philosophy-main-title {
+    font-size: 2.8rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-block;
+}
+.philosophy-main-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -10px;
+    width: 50%;
+    height: 1px;
+    background-color: var(--accent-color-dark);
+}
+
+.philosophy-quote {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    text-align: right;
+    border-left: 1px solid var(--border-light); /* Changed to border-left for RTL */
+    padding-left: 2rem;
+    margin-left: 2rem;
+}
+
+.philosophy-text-content p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text-color-light);
+    font-weight: 300;
+}
+
+.philosophy-text-content .read-more-link {
+    color: var(--accent-color-dark);
+    font-weight: 600;
+    display: inline-block;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    direction: ltr; /* Keep URL LTR */
+}
+.philosophy-text-content .read-more-link:hover {
+    border-bottom: 1px solid var(--accent-color-dark);
+}
+
+.philosophy-image-wrapper {
+    overflow: hidden;
+    margin-top: 4rem;
+    border-radius: 8px;
+}
+
+.philosophy-bottom-img {
+    width: 100%;
+    height: 90vh;
+    object-fit: cover;
+    display: block;
+}
+
+/* ======================================================
+ * 4. Videos Section
+ * ====================================================== */
+.video-section {
+    background-color: var(--bg-white);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.video-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.video-card:hover img {
+    transform: scale(1.03);
+}
+
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: white;
+    opacity: 0.9;
+    width: 70px;
+    height: 70px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+.play-btn:hover {
+    background: var(--accent-color-dark);
+    color: white;
+}
+
+/* Large Video specific */
+.large-video-card {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.large-video-card img {
+    height: 100%;
+    min-height: 500px;
+}
+
+.video-overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    color: white;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    text-align: right; /* RTL alignment */
+}
+.video-overlay-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Small Videos */
+.small-video-card img {
+    height: 250px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    color: var(--text-color-dark);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+.section-desc {
+    color: var(--text-color-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ======================================================
+ * 5. Exceptional Design Section
+ * ====================================================== */
+.exceptional-design-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.exceptional-main-title {
+    font-size: 2.8rem;
+    color: var(--text-color-dark);
+    margin-bottom: 1rem;
+}
+
+.design-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-color-light);
+    margin-bottom: 3rem;
+}
+
+.feature-rendering-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.honest-design-title {
+    color: var(--accent-color-dark);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.honest-design-text {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color-light);
+}
+
+/* Grid */
+.design-grid {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.grid-panel {
+    min-height: 400px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.panel-space-utilization {
+    background-color: var(--accent-color-light);
+}
+.panel-craftsmanship {
+    background-color: var(--bg-white);
+}
+
+.grid-panel-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--text-color-dark);
+}
+
+.panel-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    min-height: 400px;
+}
+
+/* ======================================================
+ * 6. Vibrant Location
+ * ====================================================== */
+.location-hero-banner {
+    min-height: 400px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                      url('https://i.ibb.co.com/DPdWZ4mf/Screenshot-2025-11-17-141318.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.location-hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.bonsai-map-placeholder {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Location Tabs */
+.location-nav {
+    background-color: var(--border-light);
+    border-radius: 4px;
+    padding: 5px;
+}
+.location-nav .nav-link {
+    color: #555;
+    font-weight: 600;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+.location-nav .nav-link.active {
+    background-color: var(--accent-color-dark) !important; /* Override specific colors for uniformity or use specific */
+    color: white !important;
+}
+
+/* Override colors per tab if needed, but unified look is cleaner for RTL */
+#services-tab.active { background-color: #b67f70 !important; }
+#cafes-tab.active { background-color: #b9937b !important; }
+#food-tab.active { background-color: #9d8c79 !important; }
+#shopping-tab.active { background-color: #b8837a !important; }
+#education-tab.active { background-color: #80353b !important; }
+
+
+/* POI Grid */
+.poi-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 3rem;
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    text-align: right;
+}
+
+.poi-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.poi-number {
+    background-color: var(--text-color-dark);
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.poi-logo {
+    max-height: 30px;
+    width: auto;
+}
+
+.poi-item p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* ======================================================
+ * 7. Team Section
+ * ====================================================== */
+.team-image-wrapper {
+    margin-bottom: 3rem;
+}
+.team-banner-img {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+}
+
+.team-main-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+.team-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.team-partner-item {
+    padding: 2rem 1rem;
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.partner-role {
+    color: var(--accent-color-dark);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+.partner-logo {
+    max-height: 60px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+.partner-logo:hover {
+    opacity: 1;
+}
+
+/* ======================================================
+ * 8. Gallery Section
+ * ====================================================== */
+.gallery-main-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.title-divider {
+    width: 100px;
+    height: 2px;
+    background-color: var(--accent-color-dark);
+    margin: 0 auto;
+}
+
+.gallery-img {
+    border-radius: 6px;
+    transition: transform 0.3s;
+}
+.gallery-img:hover {
+    transform: scale(1.02);
+}
+
+.gallery-bottom-banner {
+    margin-top: 3rem;
+    position: relative;
+}
+.disclaimer-text-wrapper {
+    text-align: center;
+    padding: 1rem;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* ======================================================
+ * 9. Contact Section
+ * ====================================================== */
+.contact-hero-banner {
+    min-height: 350px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.4)), url('https://i.ibb.co.com/KcJn5qxQ/86e11271cc592bae5241ed9de190dbb7.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+}
+
+.contact-buttons-container .btn {
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin: 0 10px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.btn-contact-primary {
+    background-color: white;
+    color: var(--text-color-dark);
+}
+.btn-contact-secondary {
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: 1px solid white;
+}
+
+.contact-note {
+    color: rgba(255,255,255,0.9);
+    margin-top: 1rem;
+}
+
+.contact-info {
+    text-align: right; /* RTL Alignment */
+}
+
+.license-list {
+    list-style: none;
+    padding: 0;
+}
+.license-label {
+    font-weight: 700;
+    color: var(--accent-color-dark);
+    display: inline-block;
+    width: 120px;
+}
+
+.bonsai-logo-large {
+    max-height: 100px;
+    opacity: 0.8;
+}
+
+/* ======================================================
+ * 10. Footer
+ * ====================================================== */
+.bonsai-footer {
+    background-color: var(--accent-color-light);
+    padding: 4rem 0;
+    text-align: right; /* RTL Alignment */
+}
+
+.footer-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-links a {
+    font-size: 1.2rem;
+    color: var(--text-color-dark);
+    margin-left: 1.5rem; /* RTL spacing */
+    transition: color 0.3s;
+}
+.social-links a:hover {
+    color: var(--accent-color-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title { font-size: 3rem; }
+    .philosophy-quote { border-left: none; border-top: 1px solid var(--border-light); padding-top: 2rem; margin-left: 0; }
+    .grid-panel { min-height: 300px; }
+}
